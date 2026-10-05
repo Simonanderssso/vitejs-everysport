@@ -12,13 +12,15 @@ export default function SportsPage() {
   const [selectedSportId, setSelectedSportId] = useState(); // "football" | "icehockey" | "floorball"
 
   // SportsPage behöver också hålla reda på 'selectedLeagueId' som state
-  // ???
+  // null state då ingen liga är vald
+  const [selectedLeagueId, setSelectedLeagueId] = useState(null);
   
   // Hämta en lista med ligor via hooks (useLeagues(sportId))
-   const leagues = useLeagues(selectedSportId);
+  const leagues = useLeagues(selectedSportId);
 
   // Hämta en lista med lag via hooks (useTeams(leagueId))
-  // ???
+  // Denna körs om när selectedLeagueId ändras
+  const teams = useTeams(selectedLeagueId);
 
   return (
     <>
@@ -47,6 +49,9 @@ export default function SportsPage() {
             error={leagues.err}
             // [SKAPA] Vald liga (id) måste skickas in som prop för att kunna markera "klickad liga".
             // [SKAPA] Liga-klick i LeagueList signaleras ut till SportsPage och ändrar 'selectedLeagueId'
+            selectedId={selectedLeagueId}
+            // Klick på liga i LeagueList uppdaterar då state här i sportspage
+            onSelect={(id) => setSelectedLeagueId(id)}
             disabled={!selectedSportId}  // Om ingen sport har valts -> disabled = true
           />
         </section>
@@ -55,7 +60,11 @@ export default function SportsPage() {
           <TeamList
           // TeamList har samma 4 props som LeagueList för själva datahämtningen och 'disabled' men behöver inte få ut
           // en triggning vid klickat lag och inte heller skicka in valt lag för "markering av klickat lag"
-
+           items={teams.data}
+           loading={teams.loading}
+           error={teams.err} 
+           // ingen vald liga, Teamlist visar hjälptexten
+           disabled={!selectedLeagueId}
           />
         </section>
       </main>

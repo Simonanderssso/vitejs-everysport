@@ -8,7 +8,7 @@ export async function api(path, init = {}) {
     ...init,
   });
 
-  // liten hjälp för felsökning //hejhejhej
+  // liten hjälp för felsökning
   const ct = res.headers.get('content-type') || '';
   if (!res.ok) {
     const text = await res.text();

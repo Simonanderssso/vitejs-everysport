@@ -25,3 +25,5 @@
 
 .active { border-color: #3b82f6; background: #eff6ff; }
 .name { font-weight: 600; }
+/* Samma padding som .row men utan hover och pekare då lag i laglistan inte är klickbara */
+.item { padding: .55rem .75rem;}

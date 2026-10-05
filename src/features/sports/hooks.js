@@ -21,13 +21,16 @@ const MOCK = {
     ],
     2: [{ id: 125472, name: 'SHL' },
         { id: 125554, name: 'SDHL'}],
-    4: [{ id: 121413, name: 'Superligan' }],
+    4: [{ id: 121413, name: 'Superligan' },
+        { id: 121414, name: 'Superligan Dam' }],
   },
   teamsByLeague: {
     124439: [{ id: 9367, name: 'AIK' }, { id: 9368, name: 'Djurgården' }],
-    123935: [{ id: 3, name: 'AIK DFF' }],
+    123935: [{ id: 3, name: 'AIK DFF' }, { id: 4, name: 'Hammarby IF DFF'}],
     125472: [{ id: 1171, name: 'Brynäs IF' }, { id: 6, name: 'Färjestad' }],
+    125554: [{ id: 1111, name: 'Brynäs If Dam'}, { id: 1112, name: 'Frölunda HC dam'}],
     121413: [{ id: 14392, name: 'IBF Falun' }, { id: 14563, name: 'Storvreta' }],
+    121414: [{ id: 2222, name: 'IBF Falun damer'}, {id: 2223, name: 'Ik Sätra dam'}],
   },
 };
 

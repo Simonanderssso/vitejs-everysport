@@ -4,6 +4,10 @@ export default function TeamList({
   // Här behöver du komplettera med flera olika props
   // Dock behövs inte sådant som har med klickning och markering av valt lag finnas.
   // Det räcker med 4 st props.
+  items = [], 
+  loading = false,    // pågående hämtning
+  error = null,       // fel vid hämtning
+  disabled = false,   //ingen vald liga
   
 }) {
   return (
@@ -19,8 +23,24 @@ export default function TeamList({
       Detta görs lämpligen med 'disabled' prop.
       Kolla i LeagueList för inspiration.
      */}
-
-
+      {disabled && <p style={{ opacity: 0.7 }}>Välj en liga.</p>}
+      {!disabled && loading && <p>Laddar…</p>}
+      {!disabled && error && (<p style={{ color: 'crimson' }}>Fel: {error.message}</p>)}
+      {!disabled && !loading && !error && (
+          <ul className={styles.list}>
+            {/*Ett li per lag och key får react hålla isär rader */}
+            {items.map((t) => (
+              <li key={t.id} className={styles.item}>
+                <span className={styles.name}>{t.name}</span>
+              </li>
+            ))}
+            {!items.length && (
+            <li>
+              <em>Inga lag.</em>
+            </li>
+            )}
+          </ul>
+        )}
 
     </section>
   );
